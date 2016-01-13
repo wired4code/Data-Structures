@@ -14,7 +14,7 @@ var Queue = function(){
 
   someInstance.dequeue = function(){
     var result=storage[1];
-    delete storage[1]
+    delete storage[1];
 
     for(var i=0; i<=counter; i++){
       storage[i]=storage[i+1];
