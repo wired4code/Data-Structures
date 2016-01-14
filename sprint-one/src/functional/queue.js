@@ -15,8 +15,9 @@ var Queue = function(){
   someInstance.dequeue = function(){
     var result=storage[1];
     delete storage[1];
-
-    for(var i=0; i<=counter; i++){
+    // i think i should starts at 1
+    // and should be just i<counter since we having do count--;
+    for(var i=1; i<counter; i++){
       storage[i]=storage[i+1];
     }
     if(counter){
