@@ -51,5 +51,24 @@ describe('linkedList', function() {
     expect(linkedList.contains(4)).to.equal(false);
   });
 
+
+  it('addtoHead not working', function(){
+    linkedList.addToTail(4);
+    linkedList.addToTail(5);
+    linkedList.addToTail(7);
+    linkedList.addToHead(1);
+    expect(linkedList.head.value).to.equal(1);
+    expect(linkedList.head.next.value).to.equal(4);
+  });
+
+  it('removeTail not working', function(){
+    linkedList.addToTail(4);
+    linkedList.addToTail(5);
+    linkedList.addToTail(7);
+    expect(linkedList.removeTail()).to.equal(7);
+    expect(linkedList.tail.value).to.equal(5);
+  });
+
+
   // add more tests here to test the functionality of linkedList
 });
