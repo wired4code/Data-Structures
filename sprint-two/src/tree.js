@@ -74,6 +74,17 @@ treeMethods.contains = function(target, node){
   return temp;
 };
 
+treeMethods.traverse = function(cb, node){
+  node = node || this;
+
+  for(var i = 0; i < node.children.length; i++){
+    cb(node.children[i].value);
+
+    if(node.children[i].children){
+      this.traverse(cb, node.children[i]);
+    }
+  }
+};
 
 /*
  * Complexity: What is the time complexity of the above functions?

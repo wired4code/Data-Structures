@@ -57,5 +57,18 @@ describe('tree', function() {
 
   });
 
+  it('traverse"', function(){
+    var array = [];
+    var func = function(value){ array.push(value); };
+    tree.addChild(5);
+    tree.addChild(6);
+    tree.addChild(7);
+    tree.children[0].addChild(4);
+    tree.traverse(func);
+    console.log(array);
+    expect(array).to.eql([5,4,6,7]);
+  });
+
+
 
 });
