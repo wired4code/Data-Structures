@@ -4,7 +4,6 @@ var BinarySearchTree = function(value){
   obj.left=null;
   obj.right=null;
   obj.counter = 0;
-  //obj.level = 0;
 
   return obj
 
@@ -20,31 +19,18 @@ Bstmethods.insert = function(value){
     if(value < current.value){
       if(current.left){
         current = current.left;
-        //current.counter +=1;
-        //if(this.level > current.counter){
-        //  this.level+=1;
-        //}
+
       } else {
         current.left = node;
-        //current.counter +=1;
-        //if(this.level > current.counter){
-        //  this.level+=1;
-        //}
         break;
       }
     } else {
       if(current.right){
         current = current.right;
-        //current.counter+=1;
-        //if(this.level > current.counter){
-        //  this.level+=1;
-        //}
+
       } else {
         current.right = node;
-        //current.counter +=1;
-        //if(this.level > current.counter){
-        //  this.level+=1;
-        //}
+
         break;
       }
     }
@@ -94,7 +80,6 @@ Bstmethods.breadthFirstLog = function(cb){
     var temp = queue.shift();
 
     if(temp.left){
-      //console.log(1);
       results.push(temp.left.value);
       queue.push(temp.left);
     }
@@ -119,7 +104,6 @@ var createNode = function(value, left, right){
   this.value = value;
   this.left = left;
   this.right = right;
-  //this.counter = 0;
 };
 
 /*
