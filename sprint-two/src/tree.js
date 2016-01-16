@@ -4,7 +4,7 @@ var Tree = function(value){
 
   // your code here
   newTree.children = [];  // fix me
-
+  newTree.parent = null;
   return newTree;
 };
 
@@ -14,6 +14,41 @@ treeMethods.addChild = function(value){
 	//child is an object
   var newT = Tree(value);
   this.children.push(newT);
+  newT.parent = this;
+
+};
+
+treeMethods.removeFromParent = function(value, node){
+
+  node = node || this;
+
+  var targetNode = search(value, node);
+
+  var targetParent = targetNode.parent;
+
+  targetNode.parent = null;
+  console.log(targetNode.parent)
+  _.each(targetParent.children, function(child){
+    if(child === targetNode){
+      targetParent.children.splice(child,1);
+    }
+  })
+
+  function search(value, node){
+    node = node || this;
+
+    for(var i = 0; i < node.children.length; i++){
+
+      if(node.children[i].value === value){
+
+        return node.children[i];
+      }
+      if(node.children[i].children.length){
+       search(value, node.children[i]);
+      }
+    }
+  }
+
 
 };
 
