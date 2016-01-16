@@ -37,4 +37,28 @@ describe('binarySearchTree', function() {
     console.log(array);
     expect(array).to.eql([5,2,3]);
   });
+
+  it('hardasf"', function(){
+    var array = [];
+    var func = function(value){ array.push(value); };
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(7);
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(4);
+    binarySearchTree.insert(6);
+    binarySearchTree.insert(8);
+    binarySearchTree.insert(1);
+    binarySearchTree.insert(3.5);
+    binarySearchTree.insert(5.1);
+    binarySearchTree.insert(6.2);
+    binarySearchTree.insert(7.8);
+    binarySearchTree.insert(9);
+
+
+    binarySearchTree.breadthFirstLog(func);
+    console.log(array);
+    expect(array).to.eql([5,3,7,2,4,6,8,1,3.5,5.1,6.2,7.8,9]);
+  });
+
+
 });
