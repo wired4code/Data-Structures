@@ -1,39 +1,51 @@
 var HashTable = function(){
   this._limit = 8;
   this._storage = LimitedArray(this._limit);
-  this._num = 0;
 };
 
 HashTable.prototype.insert = function(k, v){
-
-  if(this._num/this._limit >= 0.75){
-    this._limit*=2;
-  }
-
   var i = getIndexBelowMaxForKey(k, this._limit);
-  if(this._storage[i]){
-    this._storage[k] = v;
-  } else{
-    this._storage[i] = v;
+  var bucket = this._storage.get(i);
+  //var found = false;
+
+  if(!bucket){
+    bucket = [];
+    this._storage.set(i, bucket);
+    bucket.push([k,v]);
+  } else {
+
+    for(var j = 0; j < bucket.length; j++){
+      if(bucket[j][0] === k){
+        bucket[j][1] = v;
+      } else {
+        bucket.push([k,v]);
+      }
+    }
   }
-  this._num += 1;
+
+  //console.log(bucket);
+
 };
 
 HashTable.prototype.retrieve = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
-  if(this._storage[k]){
-    return this._storage[k]
+  var bucket = this._storage.get(i);
+  for(var j = 0; j < bucket.length; j++){
+    if(bucket[j][0] === k){
+      return bucket[j][1];
+    }
   }
-  return this._storage[i];
 
 };
 
 HashTable.prototype.remove = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
-  this._storage[i] = null;
-  this._num -= 1;
-  if(this._num/this._limit < 0.25){
-    this._limit *= 0.5;
+  var bucket = this._storage.get(i);
+
+  for(var j = 0; j < bucket.length; j++){
+    if(bucket[j][0] === k){
+      bucket[j][1] = null;
+    }
   }
 };
 
@@ -42,3 +54,4 @@ HashTable.prototype.remove = function(k){
 /*
  * Complexity: What is the time complexity of the above functions?
  */
+
