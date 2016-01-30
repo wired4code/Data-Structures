@@ -1,6 +1,28 @@
 var Stack = function() {
-  // Hey! Rewrite in the new style. Your code will wind up looking very similar,
-  // but try not not reference your old code in writing the new style.
+
+  // tracking a start property is not necessary for stack
+  this.end = 0;
+
+};
+
+Stack.prototype.push = function(value){
+  this.end++;
+  this[this.end] = value;
+};
+
+Stack.prototype.pop = function(){
+  if(this.size()){
+    var temp = this[this.end];
+    delete this[this.end];
+    this.end --;
+    return temp;
+  }
+};
+
+Stack.prototype.size = function(){
+
+  return this.end;
+
 };
 
 
