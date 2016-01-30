@@ -81,9 +81,33 @@ BinarySearchTree.prototype.depthFirstLog = function(cb){
   searchTree(this, cb);
 
 };
+
+BinarySearchTree.prototype.breadthFirstLog = function(cb){
+
+  var nodeQueue = [this];
+  var values = [this.value];
+
+  while(nodeQueue.length){
+    var current = nodeQueue.shift();
+    if(current.left){
+      nodeQueue.push(current.left)
+      values.push(current.left.value);
+    }
+    if(current.right){
+      nodeQueue.push(current.right);
+      values.push(current.right.value);
+    }
+  }
+
+  for(var i = 0; i < values.length; i++){
+    cb(values[i]);
+  }
+
+};
 /*
  * Complexity: What is the time complexity of the above functions?
  * insert: logarithmic
  * contains: logarithmic
  * depthFirstLog: linear;
+ * breadthFirstLog: linear;
  */
