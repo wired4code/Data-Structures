@@ -4,7 +4,6 @@ var Stack = function() {
   var obj = {};
   obj.storage = {};
   obj.end = 0;
-  obj.start = 0;
   _.extend(obj, stackMethods);
   return obj;
 };
@@ -26,7 +25,7 @@ stackMethods.pop = function(){
 };
 
 stackMethods.size = function(){
-  return this.end - this.start;
+  return this.end;
 };
 
 
